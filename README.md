@@ -32,42 +32,28 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 ## PROGRAM
 ```
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-void caesarEncrypt(char *text, int key) {
-    for (int i = 0; text[i] != '\0'; i++) {
-        char c = text[i];
-        if (c >= 'A' && c <= 'Z') {
-            text[i] = ((c - 'A' + key) % 26 + 26) % 26 + 'A';
-        }
-        else if (c >= 'a' && c <= 'z') {
-            text[i] = ((c - 'a' + key) % 26 + 26) % 26 + 'a';
-        }
-    }
+ #include <string.h>
+ void vigenereCipher(char *text, char *key, int decrypt)
+ {
+   int len = strlen(text), keyLen = strlen(key);
+   for (int i = 0; i < len; i++)
+   {
+       int shift = key[i % keyLen]- 'A';
+       text[i] = 'A' + (text[i]- 'A' + (decrypt ? 26- shift : shift)) % 26;
+   }
 }
-
-void caesarDecrypt(char *text, int key) {
-    caesarEncrypt(text, -key);
-}
-
-int main() {
-    char message[100];
-    int key;
-    printf("Enter the message to encrypt: ");
-    fgets(message, sizeof(message), stdin); 
-    message[strcspn(message, "\n")] = '\0';
-    printf("Enter the Caesar Cipher key (an integer): ");
-    scanf("%d", &key); 
-    caesarEncrypt(message, key);
-    printf("Encrypted Message: %s\n", message);
-    caesarDecrypt(message, key);
-    printf("Decrypted Message: %s\n", message);
-    return 0;
-}
+int main()
+{
+ char text[] = "JIDHESH", key[] = "KEY";
+ vigenereCipher(text, key, 0);
+ printf("Encrypted Message: %s\n", text);
+ vigenereCipher(text, key, 1);
+ printf("Decrypted Message: %s\n", text);
+ return 0;
+ }
 ```
 ## OUTPUT
-<img width="791" height="158" alt="image" src="https://github.com/user-attachments/assets/cd55822b-b2cf-4efc-ba8d-c0599c7d5518" />
+<img width="885" height="153" alt="CRYPTO EXP 04" src="https://github.com/user-attachments/assets/a1987125-9832-4fd3-add0-4c93ae7e67f2" />
 
 ## RESULT
 The program is executed successfully.
