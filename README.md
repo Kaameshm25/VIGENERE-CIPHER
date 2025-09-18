@@ -1,10 +1,6 @@
 # VIGENERE-CIPHER
 ## EX. NO: 4
- 
-
 ## IMPLEMETATION OF VIGENERE CIPHER
- 
-
 ## AIM:
 
 To implement the Vigenere Cipher substitution technique using C program.
@@ -44,7 +40,7 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 }
 int main()
 {
- char text[] = "JIDHESH", key[] = "KEY";
+ char text[] = "KAAMESH", key[] = "KEY";
  vigenereCipher(text, key, 0);
  printf("Encrypted Message: %s\n", text);
  vigenereCipher(text, key, 1);
